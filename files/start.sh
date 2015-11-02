@@ -15,8 +15,8 @@ if [ $OUTPUT != "custom" ]; then
   sed -i "s#{INDEX}#${INDEX:-topbeat}#g" /topbeat/config/topbeat.yml
   sed -i "s#{HOST}#${HOST:-${PROFILE}}#g" /topbeat/config/topbeat.yml
   sed -i "s#{PORT}#${PORT:-9200}#g" /topbeat/config/topbeat.yml
-  sed -i "s#{SHIPPER}#${SHIPPER}#g" /topbeat/config/topbeat.yml
-  sed -i "s#{TAGS}#${TAGS}#g" /topbeat/config/topbeat.yml
+  sed -i "s#{SHIPPER_NAME}#${SHIPPER_NAME}#g" /topbeat/config/topbeat.yml
+  sed -i "s#{SHIPPER_TAGS}#${SHIPPER_TAGS}#g" /topbeat/config/topbeat.yml
 fi
 
 if [ $OUTPUT == "elasticsearch" ] || [ $EXTERNAL_ELASTIC_HOST ]; then

@@ -45,8 +45,8 @@ Docker image for Elastic Topbeat
         -e INDEX=topbeat \
         -e PROCS=.* \
         -e PERIOD=10 \
-        -e SHIPPER=super-app \
-        -e TAGS="qa", "db" \
+        -e SHIPPER_NAME=super-app \
+        -e SHIPPER_TAGS="qa", "db" \
         --name=topbeat \
         athieriot/topbeat
 
