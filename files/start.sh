@@ -24,13 +24,13 @@ if [ $OUTPUT == "elasticsearch" ] || [ $EXTERNAL_ELASTIC_HOST ]; then
 
   if [ -z $DRY_RUN ]; then
     counter=0
-    while [ ! "$(curl $ELASTIC_PATH 2> /dev/null)" -a $counter -lt 30  ]; do
+    while [ ! "$(curl ${ELASTIC_PATH} 2> /dev/null)" -a $counter -lt 30  ]; do
       sleep 1
       ((counter++))
       echo "waiting for Elasticsearch to be up ($counter/30)"
     done
 
-    curl -XPUT 'http://$ELASTIC_PATH/_template/topbeat' -d@/etc/topbeat/topbeat.template.json
+    curl -XPUT 'http://${ELASTIC_PATH}/_template/topbeat' -d@/etc/topbeat/topbeat.template.json
   fi
 fi
 
