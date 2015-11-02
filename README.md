@@ -1,7 +1,47 @@
-# docker-elastic-topbeat
+# Docker Elastic.co Topbeat
 
 Docker image for Elastic Topbeat
 
-      docker run --links=elasticsearch:elasticsearch athieriot/topbeat
+# Usage
+
+## Elasticsearch
+
+      docker run -d \
+        --links=elasticsearch:elasticsearch \
+        --name=topbeat \
+        athieriot/topbeat
       
-      docker run --add-host="elasticsearch:127.0.0.1"
+## Logstash
+
+      docker run -d \
+        -e PROFILE=logstash \
+        --links=logstash:logstash \
+        --name=topbeat \
+        athieriot/topbeat
+
+## File
+
+      docker run -d \
+        -e PROFILE=file \
+        -v /path/to/data/:/topbeat/data/ \
+        --name=topbeat \
+        athieriot/topbeat
+
+## Custom configuration file
+
+      docker run -d \
+        -e PROFILE=custom \
+        -v /path/to/config/topbeat.yml:/topbeat/config/topbeat.yml \
+        --name=topbeat \
+        athieriot/topbeat
+
+# More variables
+
+      docker run -d \
+        -e HOST=elasticsearch.in.aws.com \
+        -e PORT=80 \
+        -e INDEX=topbeat \
+        -e PROCS=.* \
+        -e PERIOD=10 \
+        --name=topbeat \
+        athieriot/topbeat

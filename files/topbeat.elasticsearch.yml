@@ -3,11 +3,11 @@
 ############################# Input ############################################
 input:
  # In seconds, defines how often to read server statistics
- period: 10
+ period: {PERIOD}
 
  # Regular expression to match the processes that are monitored
  # By default, all the processes are monitored
- procs: [".*"]
+ procs: ["{PROCS}"]
 
 
 ############################# Output ##########################################
@@ -26,7 +26,7 @@ output:
     # A host can be defined as an IP:PORT or an URL with the format: scheme://IP:PORT/path. In case you specify and
     # additional path, the scheme is required. The defaults are ( port is 9200, path is '/', scheme is http).
     # In case of an IPv6 address, please use http://[2001:db8::1]:9200.
-    hosts: ["elasticsearch:9200"]
+    hosts: ["{HOST}:{PORT}"]
 
     # Optional protocol and basic auth credentials. These are deprectad
     #protocol: "https"
@@ -35,7 +35,7 @@ output:
 
     # Optional index name. The default is "topbeat" and generates
     # [topbeat-]YYYY.MM.DD keys.
-    #index: "topbeat"
+    index: "{INDEX}"
 
     # Optional HTTP Path
     #path: "/elasticsearch"
@@ -84,68 +84,6 @@ output:
 
       # Configure curve types for ECDHE based cipher suites
       #curve_types: []
-
-
-  ### Logstash as output
-  #logstash:
-    # Uncomment out this option if you want to output to Logstash. The default is false.
-    #enabled: true
-
-    # The Logstash hosts
-    #hosts: ["localhost:5044", "logstash:5045"]
-
-    # Optional load balance the events between the Logstash hosts
-    #loadbalance: true
-
-    # Optional index name. The default index name is topbeat
-    #index: topbeat
-
-    # Optional TLS. The default is on
-    #tls:
-      #disabled: true
-
-      # List of root certificates for HTTPS server verifications
-      #certificate_authorities: ["/etc/pki/root/ca.pem"]
-
-      # Certificate for TLS client authentication
-      #certificate: "/etc/pki/client/cert.pem"
-
-      # Client Certificate Key
-      #certificate_key: "/etc/pki/client/cert.key"
-
-      # Controls whether the client verifies server certificates and host name.
-      # If insecure is set to true, all server host names and certificates will be
-      # accepted. In this mode TLS based connections are susceptible to
-      # man-in-the-middle attacks. Use only for testing.
-      #insecure: true
-
-      # Configure cipher suites to be used for TLS connections
-      #cipher_suites: []
-
-      # Configure curve types for ECDHE based cipher suites
-      #curve_types: []
-
-
-  ### File as output
-  #file:
-    # Enabling file output
-    #enabled: false
-
-    # Path to the directory where to save the generated files. The option is mandatory.
-    #path: "/tmp/topbeat"
-
-    # Name of the generated files. The default is `topbeat` and it generates
-    # files: `topbeat`, `topbeat.1`, `topbeat.2`, etc.
-    #filename: topbeat
-
-    # Maximum size in kilobytes of each file. When this size is reached, the files are
-    # rotated. The default value is 10 MB.
-    #rotate_every_kb: 10000
-
-    # Maximum number of files under path. When this number of files is reached, the
-    # oldest file is deleted and the rest are shifted from last to first. The default
-    # is 7 files.
-    #number_of_files: 7
 
 
 ############################# Shipper #########################################

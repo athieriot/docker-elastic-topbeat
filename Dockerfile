@@ -9,7 +9,8 @@ RUN curl -L -O https://download.elastic.co/beats/topbeat/topbeat_${TOPBEAT_VERSI
     sudo dpkg -i topbeat_${TOPBEAT_VERSION}_amd64.deb && \
     mv /etc/topbeat/topbeat.yml /etc/topbeat/topbeat.example.yml
 
-ADD topbeat.yml /etc/topbeat/topbeat.yml
-ADD start.sh /
+WORKDIR /topbeat
 
-CMD /start.sh
+ADD files/ .
+
+CMD /topbeat/start.sh
