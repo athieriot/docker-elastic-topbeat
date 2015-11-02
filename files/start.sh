@@ -18,19 +18,19 @@ if [ $OUTPUT != "custom" ]; then
 fi
 
 if [ $OUTPUT == "elasticsearch" ] || [ $EXTERNAL_ELASTIC_HOST ]; then
-  # wait for elasticsearch to start up
-  ELASTIC_PATH=${EXTERNAL_ELASTIC_HOST:-${HOST:-elasticsearch}}:${EXTERNAL_ELASTIC_PORT:-${PORT:-9200}}
-  echo "Configure ${ELASTIC_PATH}"
-
   if [ -z $DRY_RUN ]; then
+    # wait for elasticsearch to start up
+    ELASTIC_PATH=${EXTERNAL_ELASTIC_HOST:-${HOST:-elasticsearch}}:${EXTERNAL_ELASTIC_PORT:-${PORT:-9200}}
+    echo "Configure ${ELASTIC_PATH}"
+
     counter=0
-    while [ ! "$(curl ${ELASTIC_PATH} 2> /dev/null)" -a $counter -lt 30  ]; do
+    while [ ! "$(curl $ELASTIC_PATH 2> /dev/null)" -a $counter -lt 30  ]; do
       sleep 1
       ((counter++))
       echo "waiting for Elasticsearch to be up ($counter/30)"
     done
 
-    curl -XPUT 'http://${ELASTIC_PATH}/_template/topbeat' -d@/etc/topbeat/topbeat.template.json
+    curl -XPUT 'http://$ELASTIC_PATH/_template/topbeat' -d@/etc/topbeat/topbeat.template.json
   fi
 fi
 
