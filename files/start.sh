@@ -30,7 +30,7 @@ if [ $OUTPUT == "elasticsearch" ] || [ $EXTERNAL_ELASTIC_HOST ]; then
       echo "waiting for Elasticsearch to be up ($counter/30)"
     done
 
-    curl -XPUT 'http://$ELASTIC_PATH/_template/topbeat' -d@/etc/topbeat/topbeat.template.json
+    curl -XPUT "http://$ELASTIC_PATH/_template/topbeat" -d@/etc/topbeat/topbeat.template.json
   fi
 fi
 
