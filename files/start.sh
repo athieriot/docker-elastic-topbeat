@@ -17,7 +17,7 @@ fi
 
 if [ $OUTPUT == "elasticsearch" ] || [ $EXTERNAL_ELASTIC_HOST ]; then
   # wait for elasticsearch to start up
-  echo "Configure ${HOST:-${EXTERNAL_ELASTIC_HOST:-elasticsearch}}:${PORT:-${EXTERNAL_ELASTIC_PORT:-9200}}"
+  echo "Configure ${EXTERNAL_ELASTIC_HOST:-${HOST:-elasticsearch}}:${EXTERNAL_ELASTIC_PORT:-${PORT:-9200}}"
 
   if [ -z $DRY_RUN ]; then
     counter=0
