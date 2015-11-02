@@ -2,6 +2,8 @@
 
 OUTPUT=${PROFILE:-elasticsearch}
 
+mkdir -p /topbeat/config && mkdir -p /topbeat/data
+
 if [ $OUTPUT == "logstash" ] && [ -z PORT ]; then
   PORT=5044
 fi
