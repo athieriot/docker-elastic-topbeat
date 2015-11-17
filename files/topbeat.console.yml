@@ -20,24 +20,11 @@ input:
 # You can enable one or multiple outputs by setting enabled option to true.
 output:
 
-  ### File as output
-  file:
+### Console output
+  console:
 
-    # Path to the directory where to save the generated files. The option is mandatory.
-    path: "/topbeat/data"
-
-    # Name of the generated files. The default is `topbeat` and it generates
-    # files: `topbeat`, `topbeat.1`, `topbeat.2`, etc.
-    #filename: topbeat
-
-    # Maximum size in kilobytes of each file. When this size is reached, the files are
-    # rotated. The default value is 10 MB.
-    #rotate_every_kb: 10000
-
-    # Maximum number of files under path. When this number of files is reached, the
-    # oldest file is deleted and the rest are shifted from last to first. The default
-    # is 7 files.
-    #number_of_files: 7
+    # pretty print json event
+    pretty: true
 
 
 ############################# Shipper #########################################
@@ -46,18 +33,18 @@ shipper:
   # The name of the shipper that publishes the network data. It can be used to group
   # all the transactions sent by a single shipper in the web interface.
   # If this options is not defined, the hostname is used.
-  #name:
+  name: {SHIPPER_NAME}
 
   # The tags of the shipper are included in their own field with each
   # transaction published. Tags make it easy to group servers by different
   # logical properties.
-  #tags: ["service-X", "web-tier"]
+  tags: [{SHIPPER_TAGS}]
 
   # Uncomment the following if you want to ignore transactions created
   # by the server on which the shipper is installed. This option is useful
   # to remove duplicates if shippers are installed on multiple servers.
   #ignore_outgoing: true
-
+  
   # How often (in seconds) shippers are publishing their IPs to the topology map.
   # The default is 10 seconds.
   #refresh_topology_freq: 10
@@ -69,10 +56,10 @@ shipper:
 
   # Configure local GeoIP database support.
   # If no paths are not configured geoip is disabled.
-  #geoip:
-    #paths:
-    #  - "/usr/share/GeoIP/GeoLiteCity.dat"
-    #  - "/usr/local/var/GeoIP/GeoLiteCity.dat"
+  geoip:
+    paths:
+      - "/usr/share/GeoIP/GeoLiteCity.dat"
+      - "/usr/local/var/GeoIP/GeoLiteCity.dat"
 
 
 ############################# Logging #########################################

@@ -7,7 +7,7 @@ Docker image for Elastic Topbeat
 ### Elasticsearch
 
       docker run -d \
-        --links=elasticsearch:elasticsearch \
+        --link=elasticsearch:elasticsearch \
         --name=topbeat \
         athieriot/topbeat
       
@@ -15,7 +15,7 @@ Docker image for Elastic Topbeat
 
       docker run -d \
         -e PROFILE=logstash \
-        --links=logstash:logstash \
+        --link=logstash:logstash \
         --name=topbeat \
         athieriot/topbeat
 
@@ -24,6 +24,13 @@ Docker image for Elastic Topbeat
       docker run -d \
         -e PROFILE=file \
         -v /path/to/data/:/topbeat/data/ \
+        --name=topbeat \
+        athieriot/topbeat
+
+### Console
+
+      docker run -d \
+        -e PROFILE=console \
         --name=topbeat \
         athieriot/topbeat
 
@@ -58,6 +65,15 @@ In the event you are usage a custom configuration or logstash but want to add To
         -e PROFILE=logstash \
         -e EXTERNAL_ELASTIC_HOST=my.elasticsearch.com \
         -e EXTERNAL_ELASTIC_PORT=9200 \
-        --links=logstash:logstash \
+        --link=logstash:logstash \
         --name=topbeat \
         athieriot/topbeat
+
+# Troubleshouting
+
+### Elasticsearch host inavailable within a container
+
+Somehow, when Elasticsearch is launched inside a container it is inaccessible from another linked container.
+A configuration has to be set for it to work properly. Change IP as needed.
+
+      docker run --name=elasticsearch elasticsearch elasticsearch -Des.network.bind_host=0.0.0.0

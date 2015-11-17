@@ -9,6 +9,10 @@ input:
  # By default, all the processes are monitored
  procs: ["{PROCS}"]
 
+ stats:
+  system: true
+  proc: true
+  filesystem: true
 
 ############################# Output ##########################################
 
@@ -18,22 +22,21 @@ output:
 
   ### Logstash as output
   logstash:
-    # Uncomment out this option if you want to output to Logstash. The default is false.
-    enabled: true
 
     # The Logstash hosts
     hosts: ["{HOST}:{PORT}"]
 
+    # Number of workers per Logstash host.
+    #worker: 1
+    
     # Optional load balance the events between the Logstash hosts
     #loadbalance: true
 
     # Optional index name. The default index name is topbeat
     index: {INDEX}
 
-    # Optional TLS. The default is on
+    # Optional TLS. By default is off.
     #tls:
-      #disabled: true
-
       # List of root certificates for HTTPS server verifications
       #certificate_authorities: ["/etc/pki/root/ca.pem"]
 
@@ -62,30 +65,70 @@ shipper:
   # The name of the shipper that publishes the network data. It can be used to group
   # all the transactions sent by a single shipper in the web interface.
   # If this options is not defined, the hostname is used.
-  name: {SHIPPER_NAME}
+  #name:
 
   # The tags of the shipper are included in their own field with each
   # transaction published. Tags make it easy to group servers by different
   # logical properties.
-  tags: [{SHIPPER_TAGS}]
+  #tags: ["service-X", "web-tier"]
 
   # Uncomment the following if you want to ignore transactions created
   # by the server on which the shipper is installed. This option is useful
   # to remove duplicates if shippers are installed on multiple servers.
   #ignore_outgoing: true
 
+  # How often (in seconds) shippers are publishing their IPs to the topology map.
+  # The default is 10 seconds.
+  #refresh_topology_freq: 10
+
+  # Expiration time (in seconds) of the IPs published by a shipper to the topology map.
+  # All the IPs will be deleted afterwards. Note, that the value must be higher than
+  # refresh_topology_freq. The default is 15 seconds.
+  #topology_expire: 15
+
+  # Configure local GeoIP database support.
+  # If no paths are not configured geoip is disabled.
+  #geoip:
+    #paths:
+    #  - "/usr/share/GeoIP/GeoLiteCity.dat"
+    #  - "/usr/local/var/GeoIP/GeoLiteCity.dat"
+
 
 ############################# Logging #########################################
 
-#logging:
-#  selectors: []
+# There are three options for the log ouput: syslog, file, stderr.
+# Under Windos systems, the log files are per default sent to the file output,
+# under all other system per default to syslog.
+logging:
 
-# Rotator config
-#    files:
-#    path: /var/log/topbeat
-#    name: topbeat.log
-#    rotateEveryBytes:
-#    keepFiles:
-#  to_syslog: false
-#  to_files: false
+  # Send all logging output to syslog. On Windows default is false, otherwise
+  # default is true.
+  #to_syslog: true
 
+  # Write all logging output to files. Beats automatically rotate files if rotateeverybytes
+  # limit is reached.
+  #to_files: false
+
+  # To enable logging to files, to_files option has to be set to true
+  files:
+    # The directory where the log files will written to.
+    #path: /var/log/mybeat
+
+    # The name of the files where the logs are written to.
+    #name: mybeat
+
+    # Configure log file size limit. If limit is reached, log file will be
+    # automatically rotated
+    rotateeverybytes: 10485760 # = 10MB
+
+    # Number of rotated log files to keep. Oldest files will be deleted first.
+    #keepfiles: 7
+
+  # Enable debug output for selected components. To enable all selectors use ["*"]
+  # Other available selectors are beat, publish, service
+  # Multiple selectors can be chained.
+  #selectors: [ ]
+
+  # Sets log level. The default log level is error.
+  # Available log levels are: critical, error, warning, info, debug
+  #level: error

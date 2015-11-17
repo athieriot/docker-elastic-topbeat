@@ -3,7 +3,7 @@ MAINTAINER Aurélien Thieriot <aurelien@scalar.is>
 
 RUN apt-get install -y curl
 
-ENV TOPBEAT_VERSION=1.0.0-beta4
+ENV TOPBEAT_VERSION=1.0.0-rc2
 
 RUN curl -L -O https://download.elastic.co/beats/topbeat/topbeat_${TOPBEAT_VERSION}_amd64.deb && \
     sudo dpkg -i topbeat_${TOPBEAT_VERSION}_amd64.deb && \

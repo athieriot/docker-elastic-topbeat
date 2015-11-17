@@ -13,7 +13,7 @@ if [ $OUTPUT != "custom" ]; then
   sed -i "s#{PERIOD}#${PERIOD:-10}#g" /topbeat/config/topbeat.yml
   sed -i "s#{PROCS}#${PROCS:-.*}#g" /topbeat/config/topbeat.yml
   sed -i "s#{INDEX}#${INDEX:-topbeat}#g" /topbeat/config/topbeat.yml
-  sed -i "s#{HOST}#${HOST:-${PROFILE}}#g" /topbeat/config/topbeat.yml
+  sed -i "s#{HOST}#${HOST:-${OUTPUT}}#g" /topbeat/config/topbeat.yml
   sed -i "s#{PORT}#${PORT:-9200}#g" /topbeat/config/topbeat.yml
   sed -i "s#{SHIPPER_NAME}#${SHIPPER_NAME}#g" /topbeat/config/topbeat.yml
   sed -i "s#{SHIPPER_TAGS}#${SHIPPER_TAGS}#g" /topbeat/config/topbeat.yml
