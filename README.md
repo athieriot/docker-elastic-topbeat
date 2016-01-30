@@ -9,6 +9,7 @@ Docker image for Elastic Topbeat
       docker run -d \
         --link=elasticsearch:elasticsearch \
         --name=topbeat \
+        --pid=host \
         athieriot/topbeat
       
 ### Logstash
@@ -17,6 +18,7 @@ Docker image for Elastic Topbeat
         -e PROFILE=logstash \
         --link=logstash:logstash \
         --name=topbeat \
+        --pid=host \
         athieriot/topbeat
 
 ### File
@@ -25,6 +27,7 @@ Docker image for Elastic Topbeat
         -e PROFILE=file \
         -v /path/to/data/:/topbeat/data/ \
         --name=topbeat \
+        --pid=host \
         athieriot/topbeat
 
 ### Console
@@ -32,6 +35,7 @@ Docker image for Elastic Topbeat
       docker run -d \
         -e PROFILE=console \
         --name=topbeat \
+        --pid=host \
         athieriot/topbeat
 
 ### Custom configuration file
@@ -40,6 +44,7 @@ Docker image for Elastic Topbeat
         -e PROFILE=custom \
         -v /path/to/config/topbeat.yml:/topbeat/config/topbeat.yml \
         --name=topbeat \
+        --pid=host \
         athieriot/topbeat
 
 # More variables
@@ -55,6 +60,7 @@ Docker image for Elastic Topbeat
         -e SHIPPER_NAME=super-app \
         -e SHIPPER_TAGS="qa", "db" \
         --name=topbeat \
+        --pid=host \
         athieriot/topbeat
 
 ### Elasticsearch template configuration
@@ -67,6 +73,7 @@ In the event you are usage a custom configuration or logstash but want to add To
         -e EXTERNAL_ELASTIC_PORT=9200 \
         --link=logstash:logstash \
         --name=topbeat \
+        --pid=host \
         athieriot/topbeat
 
 # Troubleshouting

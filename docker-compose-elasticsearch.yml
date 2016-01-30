@@ -13,3 +13,4 @@ topbeat:
   build: .
   links:
     - elasticsearch
+  pid: host
