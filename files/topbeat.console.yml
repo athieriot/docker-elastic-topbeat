@@ -13,6 +13,7 @@ input:
   system: true
   proc: true
   filesystem: true
+  cpu_per_core: {CPU_PER_CORE}
 
 ############################# Output ##########################################
 

@@ -54,6 +54,7 @@ Docker image for Elastic Topbeat
       docker run -d \
         -e HOST=elasticsearch.in.aws.com \
         -e PORT=80 \
+        -e CPU_PER_CORE=false \
         -e INDEX=topbeat \
         -e PROCS=.* \
         -e PERIOD=10 \

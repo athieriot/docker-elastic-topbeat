@@ -10,6 +10,7 @@ fi
 
 if [ $OUTPUT != "custom" ]; then
   cp /topbeat/topbeat.${OUTPUT}.yml /topbeat/config/topbeat.yml
+  sed -i "s#{CPU_PER_CORE}#${CPU_PER_CORE:-false}#g" /topbeat/config/topbeat.yml
   sed -i "s#{PERIOD}#${PERIOD:-10}#g" /topbeat/config/topbeat.yml
   sed -i "s#{PROCS}#${PROCS:-.*}#g" /topbeat/config/topbeat.yml
   sed -i "s#{INDEX}#${INDEX:-topbeat}#g" /topbeat/config/topbeat.yml
