@@ -1,5 +1,7 @@
 # Docker Elastic.co Topbeat
 
+[![Docker Pulls](https://img.shields.io/docker/pulls/athieriot/topbeat.svg)]() [![](https://badge.imagelayers.io/athieriot/topbeat:1.1.0.svg)](https://imagelayers.io/?images=athieriot/topbeat:1.1.0 'Get your own badge on imagelayers.io')
+
 Docker image for Elastic Topbeat
 
 # Usage
