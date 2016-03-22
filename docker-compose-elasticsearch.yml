@@ -1,16 +1,21 @@
-kibana:
-  image: kibana
-  ports:
-    - "5601:5601"
-  links:
-    - elasticsearch
+version: '2'
 
-elasticsearch:
-  image: elasticsearch
-  command: elasticsearch -Des.network.bind_host=0.0.0.0
+services:
+  kibana:
+    image: kibana
+    ports:
+      - "5601:5601"
+    links:
+      - elasticsearch
+    environment:
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
 
-topbeat:
-  build: .
-  links:
-    - elasticsearch
-  pid: host
+  elasticsearch:
+    image: elasticsearch
+    command: elasticsearch -Des.network.bind_host=0.0.0.0
+
+  topbeat:
+    build: .
+    links:
+      - elasticsearch
+    pid: host
