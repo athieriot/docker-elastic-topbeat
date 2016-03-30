@@ -2,18 +2,18 @@
 
 ############################# Input ############################################
 input:
- # In seconds, defines how often to read server statistics
- period: {PERIOD}
+  # In seconds, defines how often to read server statistics
+  period: ${PERIOD:10}
 
- # Regular expression to match the processes that are monitored
- # By default, all the processes are monitored
- procs: ["{PROCS}"]
+  # Regular expression to match the processes that are monitored
+  # By default, all the processes are monitored
+  procs: ["${PROCS:.*}"]
 
- stats:
-  system: true
-  proc: true
-  filesystem: true
-  cpu_per_core: {CPU_PER_CORE}
+  stats:
+    system: true
+    proc: true
+    filesystem: true
+    cpu_per_core: ${CPU_PER_CORE:false}
 
 ############################# Output ##########################################
 
@@ -47,12 +47,12 @@ shipper:
   # The name of the shipper that publishes the network data. It can be used to group
   # all the transactions sent by a single shipper in the web interface.
   # If this options is not defined, the hostname is used.
-  #name:
+  name: ${SHIPPER_NAME}
 
   # The tags of the shipper are included in their own field with each
   # transaction published. Tags make it easy to group servers by different
   # logical properties.
-  #tags: ["service-X", "web-tier"]
+  tags: [${SHIPPER_TAGS}]
 
   # Uncomment the following if you want to ignore transactions created
   # by the server on which the shipper is installed. This option is useful
@@ -70,10 +70,10 @@ shipper:
 
   # Configure local GeoIP database support.
   # If no paths are not configured geoip is disabled.
-  #geoip:
-    #paths:
-    #  - "/usr/share/GeoIP/GeoLiteCity.dat"
-    #  - "/usr/local/var/GeoIP/GeoLiteCity.dat"
+  geoip:
+    paths:
+      - "/usr/share/GeoIP/GeoLiteCity.dat"
+      - "/usr/local/var/GeoIP/GeoLiteCity.dat"
 
 
 ############################# Logging #########################################
