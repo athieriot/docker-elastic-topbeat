@@ -19,3 +19,5 @@ services:
     links:
       - elasticsearch
     pid: host
+    environment:
+      - SHIPPER_NAME=DOCKY
