@@ -11,7 +11,7 @@ input:
 
   stats:
     system: true
-    proc: true
+    process: true
     filesystem: true
     cpu_per_core: ${CPU_PER_CORE:false}
 
