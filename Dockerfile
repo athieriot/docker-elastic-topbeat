@@ -1,7 +1,7 @@
-FROM ubuntu
+FROM ubuntu:trusty
 MAINTAINER Aurélien Thieriot <aurelien@scalar.is>
 
-RUN apt-get install -y curl
+RUN apt-get update && apt-get install -y curl
 
 ENV TOPBEAT_VERSION=1.2.3
 
