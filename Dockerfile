@@ -1,15 +1,24 @@
-FROM ubuntu:trusty
+FROM alpine:3.4
 MAINTAINER Aurélien Thieriot <aurelien@scalar.is>
-
-RUN apt-get update && apt-get install -y curl
 
 ENV TOPBEAT_VERSION=1.2.3
 
-RUN curl -L -O https://download.elastic.co/beats/topbeat/topbeat_${TOPBEAT_VERSION}_amd64.deb && \
-    sudo dpkg -i topbeat_${TOPBEAT_VERSION}_amd64.deb && \
-    mv /etc/topbeat/topbeat.yml /etc/topbeat/topbeat.example.yml
+RUN apk update && \
+    apk add \
+      ca-certificates \
+      curl && \
+    rm -rf /var/cache/apk/*
 
-run curl -L -O http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz && \
+#RUN curl -L -O https://download.elastic.co/beats/topbeat/topbeat-${TOPBEAT_VERSION}-x86_64.tar.gz && \
+#    tar -xvvf topbeat-${TOPBEAT_VERSION}-x86_64.tar.gz && \
+#    mv topbeat-${TOPBEAT_VERSION}-x86_64/ /etc/topbeat && \
+#    mv /etc/topbeat/topbeat.yml /etc/topbeat/topbeat.example.yml && \
+#    mv /etc/topbeat/topbeat /bin/topbeat
+
+ADD bin/topbeat /bin/
+ADD bin/topbeat.template.json /etc/topbeat/
+
+RUN curl -L -O http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz && \
     mkdir -p /usr/share/GeoIP && \
     gunzip -c GeoLiteCity.dat.gz > /usr/share/GeoIP/GeoLiteCity.dat
 
