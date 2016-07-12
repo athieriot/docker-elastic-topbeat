@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env ash
 
 mkdir -p /topbeat/config && mkdir -p /topbeat/data
 
