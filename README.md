@@ -44,7 +44,7 @@ Docker image for Elastic Topbeat
 
 ### Console
 
-      docker run -d \
+      docker run \
         -e PROFILE=console \
         --name=topbeat \
         --pid=host \
