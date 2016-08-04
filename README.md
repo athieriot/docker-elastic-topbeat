@@ -10,7 +10,7 @@
 - ```1.1.2```, ```1.1.1```, ```1.1.0```
 - ```1.0.1```, ```1.0.0```
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/athieriot/topbeat.svg)]() [![](https://badge.imagelayers.io/athieriot/topbeat:latest.svg)](https://imagelayers.io/?images=athieriot/topbeat:latest 'Get your own badge on imagelayers.io')
+[![Docker Pulls](https://img.shields.io/docker/pulls/athieriot/topbeat.svg)]() [![](https://images.microbadger.com/badges/image/athieriot/topbeat.svg)](https://microbadger.com/images/athieriot/topbeat "Get your own image badge on microbadger.com")
 
 Docker image for Elastic Topbeat
 
