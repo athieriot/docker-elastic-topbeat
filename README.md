@@ -4,7 +4,8 @@
 
 A Metricbeat Docker image is available right now: [https://hub.docker.com/r/athieriot/metricbeat/](https://hub.docker.com/r/athieriot/metricbeat/)
 
-Please acknowledge that, at the moment (October 2016), the configuration of Metricbeat container can't bedone via environment variables. You will need to provide a config file for further customisation.
+Please acknowledge that, at the moment (October 2016), the configuration of Metricbeat container can't be done via environment variables.
+You will need to provide a config file for further customisation.
 
 ## Alpine based
 
