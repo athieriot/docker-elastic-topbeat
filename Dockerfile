@@ -1,7 +1,7 @@
-FROM alpine:3.4
+FROM frolvlad/alpine-glibc
 MAINTAINER Aurélien Thieriot <aurelien@scalar.is>
 
-ENV TOPBEAT_VERSION=1.2.3
+ENV TOPBEAT_VERSION=1.3.0
 
 RUN apk update && \
     apk add \
@@ -9,13 +9,12 @@ RUN apk update && \
       curl && \
     rm -rf /var/cache/apk/*
 
-#RUN curl -L -O https://download.elastic.co/beats/topbeat/topbeat-${TOPBEAT_VERSION}-x86_64.tar.gz && \
-#    tar -xvvf topbeat-${TOPBEAT_VERSION}-x86_64.tar.gz && \
-#    mv topbeat-${TOPBEAT_VERSION}-x86_64/ /etc/topbeat && \
-#    mv /etc/topbeat/topbeat.yml /etc/topbeat/topbeat.example.yml && \
-#    mv /etc/topbeat/topbeat /bin/topbeat
+RUN curl -L -O https://download.elastic.co/beats/topbeat/topbeat-${TOPBEAT_VERSION}-x86_64.tar.gz && \
+    tar -xvvf topbeat-${TOPBEAT_VERSION}-x86_64.tar.gz && \
+    mv topbeat-${TOPBEAT_VERSION}-x86_64/ /etc/topbeat && \
+    mv /etc/topbeat/topbeat.yml /etc/topbeat/topbeat.example.yml && \
+    mv /etc/topbeat/topbeat /bin/topbeat
 
-ADD bin/topbeat /bin/
 ADD bin/topbeat.template.json /etc/topbeat/
 
 RUN curl -L -O http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz && \
