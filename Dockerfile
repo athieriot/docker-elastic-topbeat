@@ -1,7 +1,7 @@
 FROM frolvlad/alpine-glibc
 MAINTAINER Aurélien Thieriot <aurelien@scalar.is>
 
-ENV TOPBEAT_VERSION=1.3.0
+ENV TOPBEAT_VERSION=1.3.1
 
 RUN apk update && \
     apk add \

@@ -1,8 +1,14 @@
 # Docker Elastic.co Topbeat
 
+**__WARNING__**: With the release of the new 5.0 set of Elastic.co products, Topbeat will be deprecated and replaced by [Metricbeat](https://www.elastic.co/downloads/beats/metricbeat).
+
+A Metricbeat Docker image is available right now: [https://hub.docker.com/r/athieriot/metricbeat/](https://hub.docker.com/r/athieriot/metricbeat/)
+
+Please acknowledge that, at the moment (October 2016), the configuration of Metricbeat container can't bedone via environment variables. You will need to provide a config file for further customisation.
+
 ## Alpine based
 
-- ```1.3.0```
+- ```1.3.0```, ```1.3.1```
 - ```1.2.3-alpine```
 
 ## Ubuntu based
